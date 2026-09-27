@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2B-lightgrey.svg)](https://www.microsoft.com/windows)
 
-[English](README_en.md) | [中文](README_zh.md)
+[English](README.md) | [中文](README_zh.md)
 
 ---
 
