@@ -1,0 +1,5 @@
+# 仅测试/开发用依赖（运行程序本身不需要）
+# python-socketio 的 WebSocket 客户端需要 requests（HTTP 轮询）与 websocket-client（真 WS 升级）
+-r requirements.txt
+requests>=2.31
+websocket-client>=1.7

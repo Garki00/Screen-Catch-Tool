@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>屏幕捕获 · 实时预览</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__dot" aria-hidden="true"></span>
+      <h1>屏幕捕获</h1>
+      <span class="brand__ver">v{{ version }}</span>
+    </div>
+    <div class="pills">
+      <span id="pillCapture" class="pill pill--off"><i></i><b>已停止</b></span>
+      <span id="pillConn" class="pill pill--warn"><i></i><b>连接中…</b></span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card stage">
+      <div class="card__head">
+        <div class="card__title">
+          <span id="viewBadge" class="badge badge--live">实时</span>
+          <span id="shotInfo" class="muted">等待第一张截图…</span>
+        </div>
+        <div class="card__actions">
+          <button id="btnBackLive" class="btn btn--ghost" hidden>回到最新</button>
+          <button id="btnPin" class="btn btn--ghost" title="钉住当前这张：不被缓存轮转删除">钉住</button>
+          <button id="btnDownload" class="btn btn--primary">下载最新一张</button>
+        </div>
+      </div>
+
+      <div id="stageView" class="stage__view">
+        <div id="placeholder" class="placeholder">
+          <div class="placeholder__icon" aria-hidden="true"></div>
+          <p class="placeholder__title">还没有画面</p>
+          <p class="placeholder__hint">在桌面端点「开始捕获」后，这里会实时刷新最新截图。</p>
+        </div>
+        <img id="live" alt="最新截图" hidden>
+        <div id="newHint" class="newhint" hidden>有新截图 · 点击回到最新</div>
+      </div>
+
+      <div class="card__foot">
+        <span id="footTarget" class="muted">捕获目标：—</span>
+        <span id="footInterval" class="muted">间隔：—</span>
+        <span id="footCrop" class="muted">范围框：未设置</span>
+        <span id="footCache" class="muted">缓存：0 / 0</span>
+      </div>
+    </section>
+
+    <aside class="card history">
+      <div class="card__head">
+        <div class="card__title">
+          <h2>历史截图</h2>
+          <span id="historyCount" class="muted">0 张</span>
+        </div>
+        <button id="btnRefresh" class="btn btn--ghost btn--sm" title="重新拉取列表">刷新</button>
+      </div>
+      <div id="strip" class="strip" role="list"></div>
+      <p id="stripEmpty" class="muted strip__empty">暂无历史，捕获开始后会一张张累积（最多 20 张，钉住的不占额度）。</p>
+      <p class="muted strip__note">点击缩略图可放大查看；钉住会保留该张不被轮转。</p>
+    </aside>
+  </main>
+
+  <footer class="footnote">
+    落盘始终是全尺寸原图；范围框只裁剪推送到 web 端的画面。
+  </footer>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/static/js/socket.io.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
